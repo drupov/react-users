@@ -1,0 +1,11 @@
+.user {
+  border: 1px solid rgb(172, 172, 172);
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+}
+
+.user--name {
+  padding: 5px;
+  text-align: center;
+}
