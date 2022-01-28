@@ -9,7 +9,7 @@ export interface UserProps {
 const User: FunctionComponent<UserProps> = ({userName, userPicture}) => {
   return (
     <div className="user">
-      <div className="user--picture"><img src={userPicture} /></div>
+      <div className="user--picture"><img src={userPicture} alt={userName} /></div>
       <div className="user--name">{userName}</div>
     </div>
   )
