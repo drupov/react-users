@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {useEffect, useState} from 'react'
+import axios from 'axios'
+import Users from './components/Users/Users'
+import './App.css'
 
-function App() {
+const App = () => {
+  const [page, setPage] = useState(1)
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const loadMore = () => setPage(page + 1)
+
+  useEffect(() => {
+    axios.get(`https://randomuser.me/api?page=${page}&results=5`)
+      .then(({data}) => {
+        setData(prevData => prevData.concat(data.results))
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.error(error.message)
+      })
+  }, [page])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div className="users">
+        <Users data={data} />
+      </div>
+      <div className="actions">
+        <button onClick={() => {
+          loadMore()
+          setLoading(true)
+        }}>{loading ? 'Loading...' : 'Load more'}</button>
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
