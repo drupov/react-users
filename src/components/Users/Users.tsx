@@ -1,5 +1,5 @@
-import { FunctionComponent } from "react"
-import User, {UserProps} from '../User/User'
+import { FunctionComponent } from 'react'
+import User, { UserProps } from '../User/User'
 
 interface UsersProps {
   data: UserProps[]
