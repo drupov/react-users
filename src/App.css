@@ -39,3 +39,7 @@ button:hover {
     padding: 0 2.6rem;
   }
 }
+
+.user--picture {
+  text-align: center;
+}
